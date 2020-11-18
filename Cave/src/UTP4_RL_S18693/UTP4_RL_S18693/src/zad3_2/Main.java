@@ -1,0 +1,45 @@
+/**
+ * @author Rzeczkowski Łukasz S18693
+ */
+//package zad3_2;
+package zad3_2;
+
+
+/*<-- niezbędne importy */
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+public class Main {
+
+    public static void main(String[] args) {
+        // Lista destynacji: port_wylotu port_przylotu cena_EUR
+        List<String> dest = Arrays.asList(
+                "bleble bleble 2000",
+                "WAW HAV 1200",
+                "xxx yyy 789",
+                "WAW DPS 2000",
+                "WAW HKT 1000"
+        );
+        double ratePLNvsEUR = 4.30;
+        List<String> result =
+                dest.stream()
+                        .filter(n ->
+                                n.startsWith("WAW"))
+                        .map(n -> {
+                            String[] info = n.toString().split(" ");
+                            return "to " + info[1] + " - price in PLN: " + (int) (Integer.parseInt(info[2]) * ratePLNvsEUR);
+                        }).collect(Collectors.toList());
+
+        /*<-- tu należy dopisać fragment
+         * przy czym nie wolno używać żadnych własnych klas, jak np. ListCreator
+         * ani też żadnych własnych interfejsów
+         * Podpowiedź: należy użyć strumieni
+         */
+
+        for (String r : result) System.out.println(r);
+    }
+}
